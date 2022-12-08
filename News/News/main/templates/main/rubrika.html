@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block lenta %}
+<section class="eight columns">
+    <h3>{{parameter}}</h3>
+    {% for el  in lenta %}
+    <article class="blog_post">
+
+        <div class="three columns">
+            <a href="#" class="th"><img src="{% static 'images/'%}{{el.images}}" alt="desc"/></a>
+        </div>
+        <div class="nine columns">
+            <a href="#"><h4>{{el.title}}</h4></a>
+            <p> {{el.annotation}}</p>
+            {% if user.is_superuser %}
+            <div><a href="{% url 'rubrika'%}?del={{el.title}}&parameter={{el.rub}}">Удалить</a></div>
+            {% endif %}
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}
+
+
+{% block admin %}
+{% if user.is_authenticated %}
+<section class="four columns">
+    <div class="container">
+        <div class="card">
+            <div class="icon">
+                <ion-icon name="diamond-outline"></ion-icon>
+            </div>
+            <div class="content">
+                <h1 class="neonText">
+                    Админ-панель
+                </h1>
+                <a href="{% url 'addState' %}"><h2 class="neonText"> &#9997; Добавить статью
+                    &#9997;</h2>
+                </a>
+                <a href="{% url 'addRubric' %}"><h2 class="neonText"> &#9997; Добавить рубрику
+                    &#9997;</h2>
+                </a>
+                <a href="{% url 'addHash' %}"><h2 class="neonText"> &#9997; Добавить хештег
+                    &#9997;</h2>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js" lang="en">
+
+<head>
+    {% load bootstrap3 %}
+
+    <meta charset="utf-8"/>
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width"/>
+
+
+    <title>Новости науки</title>
+    <!-- Included CSS Files (Compressed) -->
+    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <script src="{% static 'js/modernizr.foundation.js' %}"></script>
+    <script src="{% static 'js/pageUpdate.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'fonts/ligature.css' %}">
+
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic'
+          rel='stylesheet' type='text/css'/>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- ######################## Main Menu ######################## -->
+
+<nav>
+
+    <div class="twelve columns header_nav">
+        <div class="row">
+
+            <ul id="menu-header" class="nav-bar horizontal">
+
+                <li><a href="{% url 'signup' %}">Регистрaция</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'index' %}">Главная</a></li>
+                {%for el in rubriks%}
+                <li><a href="{% url 'rubrika'%}?parameter={{el.name}}">{{el.name}}</a></li>
+                {% endfor %}
+                <li><a href="{% url 'logout' %}">Выйти</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Войти</a></li>
+                {% endif %}
+
+            </ul>
+
+
+            <script type="text/javascript">
+         //<![CDATA[
+         $('ul#menu-header').nav-bar();
+          //]]>
+
+            </script>
+
+        </div>
+    </div>
+
+</nav><!-- END main menu -->
+
+
+<!-- ######################## Header (featured posts) ######################## -->
+
+<header>
+
+
+    <div class="row">
+
+        <h1>Новости Илюшки Кудиенко</h1>
+
+    </div>
+
+</header>
+
+<!-- ######################## Section ######################## -->
+
+<section>
+
+    <div class="section_main">
+
+        <div class="row">
+
+            {% block lenta %} {% endblock %}
+            {% block admin %} {% endblock %}
+            {% block create %} {% endblock %}
+            {% block registration %} {% endblock %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ######################## Section ######################## -->
+
+<section>
+
+    <div class="section_dark">
+        <div class="row">
+
+            <h2></h2>
+
+            <div class="two columns">
+                <img src="{% static 'images/promo1.jpg' %}" alt="desc"/>
+            </div>
+
+            <div class="two columns">
+                <img src="{% static 'images/promo2.jpg' %}" alt="desc"/>
+            </div>
+
+            <div class="two columns">
+                <img src="{% static 'images/promo3.jpg' %}" alt="desc"/>
+            </div>
+
+            <div class="two columns">
+                <img src="{% static 'images/promo4.jpg' %}" alt="desc"/>
+            </div>
+
+            <div class="two columns">
+                <img src="{% static 'images/promo5.jpg' %}" alt="desc"/>
+            </div>
+
+            <div class="two columns">
+                <img src="{% static 'images/promo6.jpg' %}"/>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ######################## Footer ######################## -->
+
+<footer>
+
+    <div class="row">
+
+        <div class="twelve columns footer">
+            <a href="" class="lsf-icon" style="font-size:16px; margin-right:15px" title="twitter">Twitter</a>
+            <a href="" class="lsf-icon" style="font-size:16px; margin-right:15px" title="facebook">Facebook</a>
+            <a href="" class="lsf-icon" style="font-size:16px; margin-right:15px" title="pinterest">Pinterest</a>
+            <a href="" class="lsf-icon" style="font-size:16px" title="instagram">Instagram</a>
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ######################## Scripts ######################## -->
+
+<!-- Included JS Files (Compressed) -->
+<script src="{% static 'js/foundation.min.js' %}" type="text/javascript"></script>
+<!-- Initialize JS Plugins -->
+<script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+</body>
+</html>

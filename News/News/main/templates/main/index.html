@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block lenta %}
+
+<section class="eight columns">
+    {% for el in news %}
+
+          <article class="blog_post">
+
+             <div class="three columns">
+             <a href="#" class="th"><img src="{% static 'images/'%}{{el.images}}" alt="desc" /></a>
+             </div>
+             <div class="nine columns">
+              <a href="#"><h4>{{el.title}}</h4></a>
+              <p> {{el.annotation}}</p>
+
+              </div>
+
+          </article>
+    {% endfor %}
+</section>
+{% endblock %}
